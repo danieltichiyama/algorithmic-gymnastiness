@@ -22,19 +22,33 @@ function quickSort(arr) {
 //merge-sort
 function mergeSort(arr) {
   if (arr.length === 1) {
-    return;
+    return arr;
   }
 
-  let one = arr.slice(0, parseInt(arr.length / 2));
-  let two = arr.slice(parseInt(arr.length / 2));
+  let one = arr.slice(0, Math.round(arr.length / 2));
+  let two = arr.slice(Math.round(arr.length / 2));
 
-  mergeSort(one);
-  mergeSort(two);
+  let anotherOne = mergeSort(one);
+  let anotherTwo = mergeSort(two);
 
   let sortedArr = [];
-  let put;
 
-  while (one.length !== 0 || two.length !== 0);
+  let totalLength = anotherOne.length + anotherTwo.length;
+
+  while (totalLength > 0) {
+    if (anotherOne.length === 0) {
+      sortedArr[sortedArr.length] = anotherTwo.shift();
+    } else if (anotherTwo.length === 0) {
+      sortedArr[sortedArr.length] = anotherOne.shift();
+    } else if (anotherOne[0] > anotherTwo[0]) {
+      sortedArr[sortedArr.length] = anotherTwo.shift();
+    } else {
+      sortedArr[sortedArr.length] = anotherOne.shift();
+    }
+    totalLength--;
+  }
+
+  return sortedArr;
 }
 
 //insertion-sort
@@ -46,3 +60,5 @@ function insertionSort(arr) {
 function selectionSort(arr) {
   return;
 }
+
+console.log(mergeSort(array));
