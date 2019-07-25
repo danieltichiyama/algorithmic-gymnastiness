@@ -53,7 +53,8 @@ function mergeSort(arr) {
 
 //insertion-sort
 function insertionSort(arr) {
-  return;
+  for (i=1; i)
+  return arr;
 }
 
 //selection-sort
